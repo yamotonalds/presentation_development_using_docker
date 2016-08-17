@@ -56,7 +56,7 @@ Dockerfileやdocker-compose.ymlに書いてある
 <img src="images/long.jpg" height="250px" />
 
 ```
-dcoker-compose run --rm projectname servicename rails c
+dcoker-compose run --rm servicename rails c
 ```
 
 pecoがあればコマンド履歴で大丈夫
@@ -94,11 +94,10 @@ Docker for Macだとボリュームマウントしたディレクトリのパフ
 ## unisonの問題点
 
 - 同期する分だけコンテナ起動に時間がかかる
+    - bundle installしたgemのコードまで同期するとヤバい
+        - gem追加時はbuild
 - 編集が競合すると変更が反映されない
-- ソースコード管理
-    - ADD形式だとimage側のファイルがローカルに入ってくる
-    - bundlerでインストールするgemの管理
-        - dockerignoreで無視してるとADDされない
+- コンテナ側の意図しないファイルがローカルに入ってくることがある
 
 # おわりに
 
